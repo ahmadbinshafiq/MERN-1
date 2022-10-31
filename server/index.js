@@ -8,7 +8,14 @@ const User = require('./models/user.model');
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect('mongodb://localhost:27017/full-mern-stack-video')
+mongoose.connect('mongodb+srv://ahmadbinshafiq:<pass>@cluster0.vxev3cd.mongodb.net/?retryWrites=true&w=majority')
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.log('Error connecting to MongoDB', err))
+
+
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+})
 
 app.post('/api/register', async (req, res) => {
     console.log(req.body)
@@ -18,9 +25,9 @@ app.post('/api/register', async (req, res) => {
             email: req.body.email,
             password: req.body.pass
         })
-        res.json({status: 'ok'})
+        res.json({ status: 'ok' })
     } catch (error) {
-        res.json({status: 'error', error: 'Duplicate email'})
+        res.json({ status: 'error', error: 'Duplicate email' })
     }
 })
 
@@ -37,15 +44,15 @@ app.post('/api/login', async (req, res) => {
         //     email: user.email,
         // }, 'secret123')
 
-        return res.json({status: 'ok', user: true})
+        return res.json({ status: 'ok', user: true })
     } else {
-        return res.json({status: 'ok', user: false})
+        return res.json({ status: 'ok', user: false })
     }
-    
+
 })
 
 app.get('/api/get', (req, res) => {
-    res.json({moiz: 'Haseeb Kanjar'})
+    res.json({ result: 'Status 200 OK' })
 })
 
 

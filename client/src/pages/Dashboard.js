@@ -6,10 +6,10 @@ const Dashboard = () => {
 
     async function populateQuote() {
         await fetch('http://localhost:1337/api/get')
-        .then((res) => res.json())
-        .then((json) => {
-            setData(json.moiz)
-        })
+            .then((res) => res.json())
+            .then((json) => {
+                setData(json.result)
+            })
 
     }
 
